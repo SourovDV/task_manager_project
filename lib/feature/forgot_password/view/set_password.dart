@@ -3,9 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:task_manager_project/common/utils/widget/background.dart';
 import 'package:task_manager_project/common/utils/widget/common_next_button.dart';
+import 'package:task_manager_project/feature/forgot_password/controller/forgot_controller.dart';
 
-class SignUpView extends GetView<SignUpView> {
-  const SignUpView({super.key});
+class SetPassword extends GetView<ForgotEmailController> {
+  const SetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,24 +18,25 @@ class SignUpView extends GetView<SignUpView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Sign Up", style: theme.labelLarge),
-              SizedBox(height: 20.h),
-              TextFormField(decoration: InputDecoration(hintText: "Your Name")),
-              SizedBox(height: 10.h),
-              TextFormField(decoration: InputDecoration(hintText: "Your Email")),
-              SizedBox(height: 10.h),
+              Text("Set Password", style: theme.labelLarge),
+              SizedBox(height: 10.h,),
+              Text(
+                "If you want to change plase give current and confirm password",
+                style: theme.labelSmall,
+              ),
+              SizedBox(height: 10.h,),
               TextFormField(
-                decoration: InputDecoration(hintText: "Your Password"),
+                decoration: InputDecoration(hintText: "Current password"),
               ),
               SizedBox(height: 10.h),
               TextFormField(
-                decoration: InputDecoration(hintText: "Your Address"),
+                decoration: InputDecoration(hintText: "Confirm password"),
               ),
-              SizedBox(height: 10.h),
-              TextFormField(decoration: InputDecoration(hintText: "Your number")),
               SizedBox(height: 20.h),
-              CommonButton(child: () {}),
-              SizedBox(height: 30.h),
+              CommonButton(child: () {
+                controller.setPasswordToSignUpScreen();
+              }),
+              SizedBox(height: 40.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

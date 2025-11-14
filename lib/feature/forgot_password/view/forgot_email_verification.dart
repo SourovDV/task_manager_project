@@ -27,7 +27,16 @@ class ForgotEmailVerification extends GetView<ForgotEmailController> {
               SizedBox(height: 20.h,),
               TextFormField(decoration: InputDecoration(hintText: "Email")),
               SizedBox(height: 20.h,),
-              CommonButton(),
+              CommonButton(child: () {controller.forgotToPinScreen(); },),
+              SizedBox(height: 20.h,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("If you have accound",style: theme.labelSmall,),
+                  SizedBox(width: 10.w,),
+                  Text("Sign In",style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.bold),)
+                ],
+              )
             ],
           ),
         ),
