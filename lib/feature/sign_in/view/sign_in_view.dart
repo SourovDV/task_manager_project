@@ -26,7 +26,9 @@ class SignInView extends GetView<SignInController> {
               SizedBox(height: 10.h),
               TextFormField(decoration: InputDecoration(hintText: "Password")),
               SizedBox(height: 20.h),
-              CommonButton(child: () {  },),
+              CommonButton(child: () {
+                controller.signInButtonToNavberItems();
+              },),
               SizedBox(height: 50,),
               InkWell(
                   onTap: ()=>controller.signInToEmailVerification(),

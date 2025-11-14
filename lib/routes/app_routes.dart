@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:task_manager_project/feature/Bottom_items/binding/item_binding.dart';
+import 'package:task_manager_project/feature/Bottom_items/view/item_view.dart';
 import 'package:task_manager_project/feature/forgot_password/bindings/forgot_binding.dart';
 import 'package:task_manager_project/feature/forgot_password/view/forgot_email_verification.dart';
 import 'package:task_manager_project/feature/forgot_password/view/pin_verification.dart';
@@ -21,6 +23,7 @@ class AppRoutes{
     GetPage(name:AppPages.pinVerification, page: ()=>PinVerification(),binding: ForgotBindings()),
     GetPage(name:AppPages.setPassword, page: ()=>SetPassword(),binding: ForgotBindings()),
     GetPage(name:AppPages.signUp, page: ()=>SignUpView(),binding: SignUpBinding()),
+    GetPage(name:AppPages.itemNavber, page: ()=>ItemView(),binding: ItemBindings()),
   ];
 
 }

@@ -5,4 +5,5 @@ class AppPages{
   static final String pinVerification ='/pin_verification';
   static final String setPassword ='/set_password';
   static final String signUp='/sign_up';
+  static final String itemNavber='/item_navber';
 }

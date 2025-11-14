@@ -5,4 +5,8 @@ class SignInController extends GetxController{
   void signInToEmailVerification(){
     Get.toNamed(AppPages.forgotEmailVerification);
   }
+
+  void signInButtonToNavberItems(){
+    Get.toNamed(AppPages.itemNavber);
+  }
 }
