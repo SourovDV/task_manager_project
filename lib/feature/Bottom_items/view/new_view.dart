@@ -44,7 +44,6 @@ class NewView extends GetView<NewController> {
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
-                              // এখানে তোমার ইচ্ছামতো রঙ দাও
                               padding: EdgeInsets.symmetric(
                                 horizontal: 12,
                                 vertical: 8,
