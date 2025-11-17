@@ -52,8 +52,7 @@ class NewView extends GetView<NewController> {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                             ),
-                            child: Text(
-                              "New",
+                            child: Text("New",
                               style: TextStyle(fontSize: 15, color: Colors.white),
                             ),
                           ),
