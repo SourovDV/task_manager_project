@@ -5,6 +5,7 @@ import 'package:task_manager_project/common/utils/widget/appbar_widgth.dart';
 import 'package:task_manager_project/feature/Bottom_items/controller/new_controller.dart';
 import 'package:task_manager_project/feature/Bottom_items/widgth/card.dart';
 
+
 class NewView extends GetView<NewController> {
   const NewView({super.key});
 
