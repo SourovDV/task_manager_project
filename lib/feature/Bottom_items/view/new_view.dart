@@ -40,7 +40,6 @@ class NewView extends GetView<NewController> {
                           Text("Title will be here"),
                           Text("Description will be here"),
                           Text("13/04/2025"),
-
                           ElevatedButton(
                             onPressed:(){},
                             style: ElevatedButton.styleFrom(
