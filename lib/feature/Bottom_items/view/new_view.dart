@@ -13,7 +13,6 @@ class NewView extends GetView<NewController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppbarWidgth(),
-      //===body===//
       body: Column(
         children: [
           SizedBox(height: 8.h),
@@ -71,3 +70,4 @@ class NewView extends GetView<NewController> {
     );
   }
 }
+
