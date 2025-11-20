@@ -63,8 +63,7 @@ class NewView extends GetView<NewController> {
                   ),
                 );
               },
-            ),
-          ),
+            ), bv
         ],
       ),
     );
