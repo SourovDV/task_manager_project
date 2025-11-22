@@ -5,7 +5,6 @@ class AppbarWidgth extends StatelessWidget implements PreferredSizeWidget{
   const AppbarWidgth({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -26,7 +25,6 @@ class AppbarWidgth extends StatelessWidget implements PreferredSizeWidget{
             ),
           ),
           Icon(Icons.logout)
-
         ],
       ),
     );
