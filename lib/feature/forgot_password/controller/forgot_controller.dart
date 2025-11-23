@@ -13,4 +13,8 @@ class ForgotEmailController extends GetxController{
   void setPasswordToSignUpScreen(){
     Get.toNamed(AppPages.signUp);
   }
+
+  void emailScreentoSignInScreen(){
+    Get.toNamed(AppPages.signIn);
+  }
 }

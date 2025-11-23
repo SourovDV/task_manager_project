@@ -37,7 +37,9 @@ class SignInView extends GetView<SignInController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("If you don't have accound ",style:theme.labelSmall),
-                  Text("Sign Up",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600),),
+                  InkWell(
+                      onTap: ()=>controller.signInButtonToSignUp(),
+                      child: Text("Sign Up",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600),)),
                 ],
               )
             ],

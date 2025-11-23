@@ -9,4 +9,8 @@ class SignInController extends GetxController{
   void signInButtonToNavberItems(){
     Get.toNamed(AppPages.itemNavber);
   }
+
+  void signInButtonToSignUp(){
+    Get.toNamed(AppPages.signUp);
+  }
 }

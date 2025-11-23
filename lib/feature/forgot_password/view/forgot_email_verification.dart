@@ -34,7 +34,9 @@ class ForgotEmailVerification extends GetView<ForgotEmailController> {
                 children: [
                   Text("If you have accound",style: theme.labelSmall,),
                   SizedBox(width: 10.w,),
-                  Text("Sign In",style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.bold),)
+                  InkWell(
+                      onTap: ()=>controller.emailScreentoSignInScreen(),
+                      child: Text("Sign In",style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.bold),))
                 ],
               )
             ],

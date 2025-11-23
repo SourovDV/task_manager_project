@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:task_manager_project/common/utils/widget/background.dart';
 import 'package:task_manager_project/common/utils/widget/common_next_button.dart';
+import 'package:task_manager_project/feature/sign_up/controller/sign_up_controller.dart';
 
-class SignUpView extends GetView<SignUpView> {
+class SignUpView extends GetView<SignUpController> {
   const SignUpView({super.key});
 
   @override
@@ -40,11 +41,14 @@ class SignUpView extends GetView<SignUpView> {
                 children: [
                   Text("If you have accound", style: theme.labelSmall),
                   SizedBox(width: 10.w),
-                  Text(
-                    "Sign In",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20.sp,
+                  InkWell(
+                    onTap: ()=>controller.signUpToSignIn(),
+                    child: Text(
+                      "Sign In",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20.sp,
+                      ),
                     ),
                   ),
                 ],

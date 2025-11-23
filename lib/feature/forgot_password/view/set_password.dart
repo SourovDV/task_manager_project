@@ -42,11 +42,14 @@ class SetPassword extends GetView<ForgotEmailController> {
                 children: [
                   Text("If you have accound", style: theme.labelSmall),
                   SizedBox(width: 10.w),
-                  Text(
-                    "Sign In",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20.sp,
+                  InkWell(
+                    onTap: ()=>controller.emailScreentoSignInScreen(),
+                    child: Text(
+                      "Sign In",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20.sp,
+                      ),
                     ),
                   ),
                 ],
