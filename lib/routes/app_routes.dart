@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:task_manager_project/feature/Bottom_items/binding/item_binding.dart';
+import 'package:task_manager_project/feature/Bottom_items/view/add_task_view.dart';
 import 'package:task_manager_project/feature/Bottom_items/view/cancel.dart';
 import 'package:task_manager_project/feature/Bottom_items/view/complate_view.dart';
 import 'package:task_manager_project/feature/Bottom_items/view/item_view.dart';
@@ -32,6 +33,7 @@ class AppRoutes{
     GetPage(name:AppPages.progress, page: ()=>ProgressView(),binding: ItemBindings()),
     GetPage(name:AppPages.complateTask, page: ()=>ComplateView(),binding: ItemBindings()),
     GetPage(name:AppPages.cancel, page: ()=>CancelView(),binding: ItemBindings()),
+    GetPage(name: AppPages.addTask, page: ()=>AddTaskView(),binding: ItemBindings())
   ];
 
 }

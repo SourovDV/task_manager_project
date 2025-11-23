@@ -10,4 +10,5 @@ class AppPages{
   static final String progress='/progress';
   static final String complateTask="/complate";
   static final String cancel='/cancel';
+  static final String addTask ='/add_task';
 }

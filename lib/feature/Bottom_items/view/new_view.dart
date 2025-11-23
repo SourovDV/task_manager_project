@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:task_manager_project/common/utils/app_color/app_color.dart';
 import 'package:task_manager_project/common/utils/widget/appbar_widgth.dart';
 import 'package:task_manager_project/feature/Bottom_items/controller/new_controller.dart';
 import 'package:task_manager_project/feature/Bottom_items/widgth/card.dart';
-
 
 class NewView extends GetView<NewController> {
   const NewView({super.key});
@@ -16,6 +16,8 @@ class NewView extends GetView<NewController> {
       body: Column(
         children: [
           SizedBox(height: 8.h),
+
+          // Horizontal Scroll Cards
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -27,6 +29,7 @@ class NewView extends GetView<NewController> {
               ],
             ),
           ),
+
           Expanded(
             child: ListView.builder(
               itemCount: 5,
@@ -41,32 +44,52 @@ class NewView extends GetView<NewController> {
                           Text("Title will be here"),
                           Text("Description will be here"),
                           Text("13/04/2025"),
-                          ElevatedButton(
-                            onPressed:(){},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue,
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 8,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.blue,
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 8,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                child: Text(
+                                  "New",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                  ),
+                                ),
                               ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
-                            child: Text("New",
-                              style: TextStyle(fontSize: 15, color: Colors.white),
-                            ),
-                          ),
+                              Row(
+                                children: [
+                                  Icon(Icons.edit),
+                                  SizedBox(width: 10.w,),
+                                  Icon(Icons.delete)
+                                ],
+                              )
+                            ],
+                          )
                         ],
                       ),
                     ),
                   ),
                 );
               },
-            ), bv
+            ),
+          ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          controller.newScreentoAddTaskScreen();
+        },backgroundColor: AppColor.primaryColor,child: Icon(Icons.add,color: Colors.white,),)
     );
   }
 }
-
