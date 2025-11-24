@@ -45,7 +45,8 @@ class NetworkCaller {
       );
     }
   }
-  static Future<NetworkRespons> postRequest({required String url,required Map<String,dynamic> body}) async {
+  static Future<NetworkRespons> postRequest({required String url,
+    required Map<String,dynamic> body}) async {
     try {
       Uri uri = await Uri.parse(url);
       debugPrint("uri=>$uri");

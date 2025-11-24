@@ -20,8 +20,8 @@ class AppbarWidgth extends StatelessWidget implements PreferredSizeWidget{
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Sourov Chandra",),
-                  Text("sourovchandra65@gmail.com",)
+                  Text("Sourov Chandra",style: TextStyle(fontSize: 18),),
+                  Text("sourovchandra65@gmail.com",style: TextStyle(fontSize: 18),)
                 ],
               ),
             ),
