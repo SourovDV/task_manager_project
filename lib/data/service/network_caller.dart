@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
 class NetworkRespons {
@@ -17,10 +18,12 @@ class NetworkRespons {
 }
 
 class NetworkCaller {
-  Future<NetworkRespons> getRequest({required String url}) async {
+  static Future<NetworkRespons> getRequest({required String url}) async {
     try {
       Uri uri = await Uri.parse(url);
+      debugPrint("uri =>$uri");
       Response response = await get(uri);
+      debugPrint("respons=>${response.body}");
       if (response.statusCode == 200) {
         final decode = jsonDecode(response.body);
         return NetworkRespons(
@@ -42,14 +45,15 @@ class NetworkCaller {
       );
     }
   }
-  Future<NetworkRespons> postRequest({required String url,required Map<String,dynamic> body}) async {
+  static Future<NetworkRespons> postRequest({required String url,required Map<String,dynamic> body}) async {
     try {
       Uri uri = await Uri.parse(url);
+      debugPrint("uri=>$uri");
       Response response = await post(uri,
         headers: {
         "Content-Type": "application/json",
-      },
-        body: jsonEncode(body),);
+      }, body: jsonEncode(body),);
+      debugPrint("respons=>${response.body}");
       if (response.statusCode == 200 || response.statusCode == 201) {
         final decode = jsonDecode(response.body);
         return NetworkRespons(

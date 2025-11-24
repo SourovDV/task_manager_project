@@ -1,8 +1,123 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:task_manager_project/data/service/network_caller.dart';
+import 'package:task_manager_project/data/utils/base_url.dart';
 import 'package:task_manager_project/routes/app_pages.dart';
 
-class SignUpController extends GetxController{
-    void signUpToSignIn(){
-      Get.toNamed(AppPages.signIn);
+class SignUpController extends GetxController {
+
+  RxBool isLoading = false.obs;
+
+  void signUpToSignIn() {
+    Get.toNamed(AppPages.signIn);
+  }
+
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final addressController = TextEditingController();
+  final numberController = TextEditingController();
+
+  final global_key = GlobalKey<FormState>();
+
+  // Common validation
+  String? nameValidation(value) {
+    if (value == null || value.isEmpty) {
+      return "Name is required";
     }
+    return null;
+  }
+
+  String? emailValidation(value) {
+    if (value == null || value.isEmpty) {
+      return "Email is required";
+    }
+    if (!value.contains('@')) {
+      return "Enter valid email";
+    }
+    return null;
+  }
+
+  String? passwordValidation(value) {
+    if (value == null || value.isEmpty) {
+      return "Password required";
+    }
+    if (value.length < 6) {
+      return "Password must be at least 6 letters";
+    }
+    return null;
+  }
+
+  String? addressValidation(value) {
+    if (value == null || value.isEmpty) {
+      return "Address required";
+    }
+    return null;
+  }
+
+  String? numberValidation(value) {
+    if (value == null || value.isEmpty) {
+      return "Number required";
+    }
+    if (value.length < 11) {
+      return "Enter valid number";
+    }
+    return null;
+  }
+
+  void submitForm() {
+    if (global_key.currentState!.validate()) {
+      print("All OK! Form Valid");
+    } else {
+      print("Form Not Valid");
+    }
+  }
+
+  Future<void> userRegester()async{
+    isLoading.value = true;
+    final NetworkRespons respons =await NetworkCaller.postRequest(url: Urls.userRegestation, body: {
+       "email":emailController.text.trim(),
+       "firstName":nameController.text.trim(),
+       "lastName":nameController.text.trim(),
+       "mobile":numberController.text.trim(),
+       "password":passwordController.text,
+       "photo":""
+
+     });
+    isLoading.value = false;
+    if(respons.statusCode == 200 || respons.statusCode == 201){
+       print("sucess");
+       Get.snackbar(
+         "Success",
+         "Task created successfully!",
+       );
+       clearForm();
+
+     }else{
+       print("wrong");
+       Get.snackbar(
+         "False",
+         "error!",
+       );
+
+     }
+  }
+
+  void clearForm(){
+    nameController.clear();
+    emailController.clear();
+    passwordController.clear();
+    addressController.clear();
+    numberController.clear();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    addressController.dispose();
+    numberController.dispose();
+    super.dispose();
+  }
 }

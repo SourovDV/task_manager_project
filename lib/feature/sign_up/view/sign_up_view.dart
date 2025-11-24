@@ -20,21 +20,67 @@ class SignUpView extends GetView<SignUpController> {
             children: [
               Text("Sign Up", style: theme.labelLarge),
               SizedBox(height: 20.h),
-              TextFormField(decoration: InputDecoration(hintText: "Your Name")),
-              SizedBox(height: 10.h),
-              TextFormField(decoration: InputDecoration(hintText: "Your Email")),
-              SizedBox(height: 10.h),
-              TextFormField(
-                decoration: InputDecoration(hintText: "Your Password"),
+
+              Form(
+                key: controller.global_key,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: controller.nameController,
+                      decoration: InputDecoration(hintText: "Your Name"),
+                      validator: controller.nameValidation,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                    ),
+                    SizedBox(height: 10),
+
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: controller.emailController,
+                      decoration: InputDecoration(hintText: "Your Email"),
+                      validator: controller.emailValidation,
+                    ),
+                    SizedBox(height: 10),
+
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: controller.passwordController,
+                      decoration: InputDecoration(hintText: "Your Password"),
+                      validator: controller.passwordValidation,
+                    ),
+                    SizedBox(height: 10),
+
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: controller.addressController,
+                      decoration: InputDecoration(hintText: "Your Address"),
+                      validator: controller.addressValidation,
+                    ),
+                    SizedBox(height: 10),
+
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: controller.numberController,
+                      decoration: InputDecoration(hintText: "Your Number"),
+                      validator: controller.numberValidation,
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(height: 10.h),
-              TextFormField(
-                decoration: InputDecoration(hintText: "Your Address"),
-              ),
-              SizedBox(height: 10.h),
-              TextFormField(decoration: InputDecoration(hintText: "Your number")),
+
               SizedBox(height: 20.h),
-              CommonButton(child: () {}),
+
+              Obx(() {
+                return Visibility(
+                  visible: controller.isLoading == false,
+                  replacement: CircularProgressIndicator(),
+                  child: CommonButton(
+                    child: () {
+                      controller.submitForm();
+                      controller.userRegester();
+                    },
+                  ),
+                );
+              }),
               SizedBox(height: 30.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -42,7 +88,7 @@ class SignUpView extends GetView<SignUpController> {
                   Text("If you have accound", style: theme.labelSmall),
                   SizedBox(width: 10.w),
                   InkWell(
-                    onTap: ()=>controller.signUpToSignIn(),
+                    onTap: () => controller.signUpToSignIn(),
                     child: Text(
                       "Sign In",
                       style: TextStyle(
