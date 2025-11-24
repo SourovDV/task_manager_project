@@ -10,7 +10,7 @@ class ProgressView extends GetView<ProgressController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppbarWidgth(),
+      appBar: AppbarWidgth(even: controller.goToProfilePage,),
       body: Column(
         children: [
           Expanded(

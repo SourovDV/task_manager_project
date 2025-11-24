@@ -10,6 +10,8 @@ import 'package:task_manager_project/feature/forgot_password/bindings/forgot_bin
 import 'package:task_manager_project/feature/forgot_password/view/forgot_email_verification.dart';
 import 'package:task_manager_project/feature/forgot_password/view/pin_verification.dart';
 import 'package:task_manager_project/feature/forgot_password/view/set_password.dart';
+import 'package:task_manager_project/feature/profile/binding/profile_binding.dart';
+import 'package:task_manager_project/feature/profile/view/profile_view.dart';
 import 'package:task_manager_project/feature/sign_in/binding/sign_in_bindings.dart';
 import 'package:task_manager_project/feature/sign_in/view/sign_in_view.dart';
 import 'package:task_manager_project/feature/sign_up/binding/sign_up_binding.dart';
@@ -33,7 +35,9 @@ class AppRoutes{
     GetPage(name:AppPages.progress, page: ()=>ProgressView(),binding: ItemBindings()),
     GetPage(name:AppPages.complateTask, page: ()=>ComplateView(),binding: ItemBindings()),
     GetPage(name:AppPages.cancel, page: ()=>CancelView(),binding: ItemBindings()),
-    GetPage(name: AppPages.addTask, page: ()=>AddTaskView(),binding: ItemBindings())
+    GetPage(name: AppPages.addTask, page: ()=>AddTaskView(),binding: ItemBindings()),
+    GetPage(name: AppPages.profile, page: ()=>ProfileView(),binding: ProfileBindings())
+
   ];
 
 }

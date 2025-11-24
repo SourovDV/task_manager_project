@@ -4,4 +4,7 @@ class NewController extends GetxController{
   void newScreentoAddTaskScreen(){
     Get.toNamed(AppPages.addTask);
   }
+  void goToProfilePage(){
+    Get.toNamed(AppPages.profile);
+  }
 }

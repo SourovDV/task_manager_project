@@ -12,11 +12,10 @@ class NewView extends GetView<NewController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppbarWidgth(),
+      appBar: AppbarWidgth(even: controller.goToProfilePage),
       body: Column(
         children: [
           SizedBox(height: 8.h),
-
           // Horizontal Scroll Cards
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -31,58 +30,7 @@ class NewView extends GetView<NewController> {
           ),
 
           Expanded(
-            child: ListView.builder(
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Title will be here"),
-                          Text("Description will be here"),
-                          Text("13/04/2025"),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blue,
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 8,
-                                  ),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                                child: Text(
-                                  "New",
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Icon(Icons.edit),
-                                  SizedBox(width: 10.w,),
-                                  Icon(Icons.delete)
-                                ],
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
+            child: buildListView(),
           ),
         ],
       ),
@@ -91,5 +39,60 @@ class NewView extends GetView<NewController> {
           controller.newScreentoAddTaskScreen();
         },backgroundColor: AppColor.primaryColor,child: Icon(Icons.add,color: Colors.white,),)
     );
+  }
+
+  ListView buildListView() {
+    return ListView.builder(
+            itemCount: 5,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Title will be here"),
+                        Text("Description will be here"),
+                        Text("13/04/2025"),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 8,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: Text(
+                                "New",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Icon(Icons.edit),
+                                SizedBox(width: 10.w,),
+                                Icon(Icons.delete)
+                              ],
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
   }
 }
