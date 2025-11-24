@@ -92,6 +92,7 @@ class SignUpController extends GetxController {
          "Task created successfully!",
        );
        clearForm();
+       Get.offNamed(AppPages.newData);
 
      }else{
        print("wrong");
