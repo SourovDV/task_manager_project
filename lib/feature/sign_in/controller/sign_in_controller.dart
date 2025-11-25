@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:task_manager_project/data/auth/authController/user_data.dart';
+import 'package:task_manager_project/data/model/userModel.dart';
 import 'package:task_manager_project/data/service/network_caller.dart';
 import 'package:task_manager_project/data/utils/base_url.dart';
 import 'package:task_manager_project/routes/app_pages.dart';
@@ -50,6 +52,10 @@ class SignInController extends GetxController{
     print("Response: ${respons.responsdata}");
     isLoading.value=false;
     if(respons.isSucessed){
+      String token = respons.responsdata!["token"];
+      UserModel model = UserModel.formJson(respons.responsdata!["data"]);
+      model.email = emailController.text.trim();
+      AuthController.userData(token, model);
       print("sucess");
       Get.snackbar(
         "Success",

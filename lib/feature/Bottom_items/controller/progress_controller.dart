@@ -5,4 +5,7 @@ class ProgressController extends GetxController{
   void goToProfilePage(){
     Get.toNamed(AppPages.profile);
   }
+  void logOut(){
+    Get.toNamed(AppPages.signIn);
+  }
 }

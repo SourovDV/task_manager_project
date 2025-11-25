@@ -51,7 +51,6 @@ class SignInView extends GetView<SignInController> {
                  child: CommonButton(
                    child: () {
                      controller.signInSubmitForm();
-
                    },
                  ),
                );

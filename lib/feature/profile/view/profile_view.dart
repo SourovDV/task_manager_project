@@ -12,7 +12,7 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppbarWidgth(even: (){}),
+      appBar: AppbarWidgth(even: (){}, icons: Icon(Icons.logout),),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
