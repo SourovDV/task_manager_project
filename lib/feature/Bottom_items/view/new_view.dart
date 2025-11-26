@@ -28,10 +28,10 @@ class NewView extends GetView<NewController> {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                buildCard(number: '05', title: 'New'),
-                buildCard(number: '04', title: 'Progress'),
-                buildCard(number: '03', title: 'Complete'),
-                buildCard(number: '02', title: 'Cancel'),
+                buildCard(number: '05',title: 'New'),
+                buildCard(number: '04',title: 'Progress'),
+                buildCard(number: '03',title: 'Complete'),
+                buildCard(number: '02',title: 'Cancel'),
               ],
             ),
           ),

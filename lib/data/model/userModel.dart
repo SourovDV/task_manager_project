@@ -4,7 +4,6 @@ class UserModel {
   String ?lastName;
   String ?mobile;
   String ?photo;
-
   UserModel.formJson(Map<String,dynamic> json){
     print("USER JSON => $json");
     email =json["email"];
@@ -13,7 +12,6 @@ class UserModel {
     mobile=json["mobile"];
     photo=json["photo"];
   }
-
   Map<String,dynamic> toJson(){
      return{
        "email":email,
