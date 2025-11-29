@@ -11,7 +11,8 @@ class AppbarWidgth extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColor.primaryColor,
+      backgroundColor:
+      AppColor.primaryColor,
       title: Row(
         children: [
           CircleAvatar(),
