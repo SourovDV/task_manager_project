@@ -4,7 +4,8 @@ import 'package:task_manager_project/data/auth/authController/user_data.dart';
 
 class AppbarWidgth extends StatelessWidget implements PreferredSizeWidget{
   const AppbarWidgth({
-    super.key, required this.even, required this.icons,
+    super.key, required this.even,
+    required this.icons,
   });
  final VoidCallback even;
  final Widget icons;
@@ -21,7 +22,8 @@ class AppbarWidgth extends StatelessWidget implements PreferredSizeWidget{
             child: InkWell(
               onTap:even,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment:
+                CrossAxisAlignment.start,
                 children: [
                   Text("${AuthController.accessModel?.firstName ??"no data"},${AuthController.accessModel?.lastName}",
                     style: TextStyle(fontSize: 18),),
