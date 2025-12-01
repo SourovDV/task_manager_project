@@ -25,7 +25,7 @@ class AppbarWidgth extends StatelessWidget implements PreferredSizeWidget{
                 crossAxisAlignment:
                 CrossAxisAlignment.start,
                 children: [
-                  Text("${AuthController.accessModel?.firstName ??"no data"},${AuthController.accessModel?.lastName}",
+                  Text("${AuthController.accessModel?.firstName ??"nokkkkdata"},${AuthController.accessModel?.lastName}",
                     style: TextStyle(fontSize: 18),),
                   Text("${AuthController.accessModel?.email??"sourov@gmail.com"}",
                     style: TextStyle(fontSize: 18),),
