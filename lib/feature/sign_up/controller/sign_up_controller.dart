@@ -1,20 +1,22 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_manager_project/data/services/network_caller.dart';
+import 'package:task_manager_project/data/utils/urls.dart';
 import 'package:task_manager_project/routes/app_pages.dart';
 
 class SignUpController extends GetxController {
-
   RxBool isLoading = false.obs;
 
   void signUpToSignIn() {
     Get.toNamed(AppPages.signIn);
   }
 
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final addressController = TextEditingController();
-  final numberController = TextEditingController();
+   final nameController = TextEditingController();
+   final emailController = TextEditingController();
+   final passwordController = TextEditingController();
+   final addressController = TextEditingController();
+   final numberController = TextEditingController();
 
   final global_key = GlobalKey<FormState>();
 
@@ -65,14 +67,50 @@ class SignUpController extends GetxController {
 
   void submitForm() {
     if (global_key.currentState!.validate()) {
-      print("All OK! Form Valid");
+      registerUser();
     } else {
       print("Form Not Valid");
     }
   }
+  void gotoNavBarItem(){
+    Get.toNamed(AppPages.itemNavber);
+  }
+
+  //post request call
+  Future<void> registerUser() async {
+    isLoading.value=true;
+    Map<String, dynamic> userData = {
+      "email": emailController.text.trim(),
+      "firstName": nameController.text.trim(),
+      "lastName": nameController.text.trim(),
+      "mobile": numberController.text.trim(),
+      "password": passwordController.text.trim(),
+      "photo": "",
+    };
+    NetworkResponse response = await NetworkCaller.postRequest(
+      url: Urls.registerUser,
+      body: userData,
+    );
+    isLoading.value=false;
+    if(response.isSuccess){
+      clearForm();
+      Get.snackbar(
+        "Success",
+        "Register Successful!",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green.withOpacity(0.8),
+        colorText: Colors.white,
+      );
+      gotoNavBarItem();
+
+    }
+
+  }
 
 
-  void clearForm(){
+
+
+  void clearForm() {
     nameController.clear();
     emailController.clear();
     passwordController.clear();

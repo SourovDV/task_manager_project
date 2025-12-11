@@ -17,7 +17,7 @@ class NetworkResponse {
 }
 
 class NetworkCaller {
-  Future<NetworkResponse> getRequest({required String url}) async {
+  static Future<NetworkResponse> getRequest({required String url}) async {
     try {
       Uri uri = Uri.parse(url);
       debugPrint("$uri");
@@ -44,7 +44,7 @@ class NetworkCaller {
     }
   }
 
-  Future<NetworkResponse> postRequest({required String url, Map<String, dynamic> ? body}) async {
+  static Future<NetworkResponse> postRequest({required String url, Map<String, dynamic> ? body}) async {
     try {
       Uri uri = Uri.parse(url);
       debugPrint("uri => $uri");

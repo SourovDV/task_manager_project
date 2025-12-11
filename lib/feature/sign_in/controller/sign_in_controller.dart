@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_manager_project/data/services/network_caller.dart';
+import 'package:task_manager_project/data/utils/urls.dart';
 
 import 'package:task_manager_project/routes/app_pages.dart';
 
@@ -7,8 +10,8 @@ class SignInController extends GetxController {
   RxBool isLoading = false.obs;
 
   final global_key = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  static TextEditingController emailController = TextEditingController();
+  static TextEditingController passwordController = TextEditingController();
 
   String? emailValidation(value) {
     if (value == null || value.isEmpty) {
@@ -32,11 +35,47 @@ class SignInController extends GetxController {
 
   void signInSubmitForm() {
     if (global_key.currentState!.validate()) {
-      print("All OK! Form Valid");
-      signInButtonToNavberItems();
+        loginUser();
+
     } else {
       print("Form Not Valid");
     }
+  }
+
+  Future<void> loginUser()async{
+    isLoading.value = true;
+    Map<String,dynamic> userData={
+      "email": emailController.text.trim(),
+      "password":passwordController.text.trim()
+    };
+    NetworkResponse response =await NetworkCaller.postRequest(url: Urls.loginUser,body: userData);
+    isLoading.value = false;
+    if(response.isSuccess){
+      Get.snackbar(
+        "Success",
+        "Register Successful!",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green.withOpacity(0.8),
+        colorText: Colors.white,
+      );
+      clearForm();
+      signInButtonToNavberItems();
+    }else{
+      Get.snackbar(
+        "Error",
+        "Register Successful!",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red.withOpacity(0.8),
+        colorText: Colors.white,
+      );
+    }
+  }
+
+
+
+  void clearForm() {
+    emailController.clear();
+    passwordController.clear();
   }
 
   void signInToEmailVerification() {

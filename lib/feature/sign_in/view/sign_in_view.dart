@@ -28,14 +28,14 @@ class SignInView extends GetView<SignInController> {
                   children: [
                     TextFormField(
                       decoration: InputDecoration(hintText: "Email"),
-                      controller: controller.emailController,
+                      controller: SignInController.emailController,
                       validator: controller.emailValidation,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                     SizedBox(height: 10.h),
                     TextFormField(
                       decoration: InputDecoration(hintText: "Password"),
-                      controller: controller.passwordController,
+                      controller: SignInController.passwordController,
                       validator: controller.passwordValidation,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
