@@ -1,17 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:task_manager_project/data/auth/authController/user_data.dart';
-import 'package:task_manager_project/data/model/userModel.dart';
-import 'package:task_manager_project/data/service/network_caller.dart';
-import 'package:task_manager_project/data/utils/base_url.dart';
+
 import 'package:task_manager_project/routes/app_pages.dart';
 
-class SignInController extends GetxController{
+class SignInController extends GetxController {
   RxBool isLoading = false.obs;
 
-  final global_key=GlobalKey<FormState>();
-  TextEditingController emailController =TextEditingController();
-  TextEditingController passwordController =TextEditingController();
+  final global_key = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   String? emailValidation(value) {
     if (value == null || value.isEmpty) {
@@ -33,55 +30,24 @@ class SignInController extends GetxController{
     return null;
   }
 
- void signInSubmitForm() {
+  void signInSubmitForm() {
     if (global_key.currentState!.validate()) {
       print("All OK! Form Valid");
-      userLogin();
+      signInButtonToNavberItems();
     } else {
       print("Form Not Valid");
     }
   }
 
-  Future<void> userLogin()async{
-    isLoading.value=true;
-    final NetworkRespons respons =await NetworkCaller.postRequest(url: Urls.userLogin, body: {
-      "email":emailController.text.trim(),
-      "password":passwordController.text
-    });
-    print("Status: ${respons.isSucessed}");
-    print("Response: ${respons.responsdata}");
-    isLoading.value=false;
-    if(respons.isSucessed){
-      String token = respons.responsdata!["token"];
-      UserModel model = UserModel.formJson(respons.responsdata!["data"]);
-      model.email = emailController.text.trim();
-      AuthController.userData(token, model);
-      print("sucess");
-      Get.snackbar(
-        "Success",
-        "Task created successfully!",
-      );
-      signInButtonToNavberItems();
-
-    }else{
-      print("wrong");
-      Get.snackbar(
-        "Wrong",
-        "Wrong",
-      );
-    }
-  }
-
-
-  void signInToEmailVerification(){
+  void signInToEmailVerification() {
     Get.toNamed(AppPages.forgotEmailVerification);
   }
 
-  void signInButtonToNavberItems(){
+  void signInButtonToNavberItems() {
     Get.toNamed(AppPages.itemNavber);
   }
 
-  void signInButtonToSignUp(){
+  void signInButtonToSignUp() {
     Get.toNamed(AppPages.signUp);
   }
 

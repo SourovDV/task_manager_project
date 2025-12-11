@@ -76,7 +76,7 @@ class SignUpView extends GetView<SignUpController> {
                   child: CommonButton(
                     child: () {
                       controller.submitForm();
-                      controller.userRegester();
+
                     },
                   ),
                 );

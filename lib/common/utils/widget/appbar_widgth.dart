@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_project/common/utils/app_color/app_color.dart';
-import 'package:task_manager_project/data/auth/authController/user_data.dart';
-
 class AppbarWidgth extends StatelessWidget implements PreferredSizeWidget{
   const AppbarWidgth({
     super.key, required this.even,
@@ -25,10 +23,8 @@ class AppbarWidgth extends StatelessWidget implements PreferredSizeWidget{
                 crossAxisAlignment:
                 CrossAxisAlignment.start,
                 children: [
-                  Text("${AuthController.accessModel?.firstName ??"nokkkkdata"},${AuthController.accessModel?.lastName}",
-                    style: TextStyle(fontSize: 18),),
-                  Text("${AuthController.accessModel?.email??"sourov@gmail.com"}",
-                    style: TextStyle(fontSize: 18),),
+                  Text("Sourov"),
+                  Text("sourov@gmail.com")
                 ],
               ),
             ),

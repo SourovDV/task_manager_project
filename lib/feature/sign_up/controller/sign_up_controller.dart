@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:task_manager_project/data/service/network_caller.dart';
-import 'package:task_manager_project/data/utils/base_url.dart';
 import 'package:task_manager_project/routes/app_pages.dart';
 
 class SignUpController extends GetxController {
@@ -73,36 +71,6 @@ class SignUpController extends GetxController {
     }
   }
 
-  Future<void> userRegester()async{
-    isLoading.value = true;
-    final NetworkRespons respons =await NetworkCaller.postRequest(url: Urls.userRegestation, body: {
-       "email":emailController.text.trim(),
-       "firstName":nameController.text.trim(),
-       "lastName":nameController.text.trim(),
-       "mobile":numberController.text.trim(),
-       "password":passwordController.text,
-       "photo":""
-
-     });
-    isLoading.value = false;
-    if(respons.statusCode == 200 || respons.statusCode == 201){
-       print("sucess");
-       Get.snackbar(
-         "Success",
-         "Task created successfully!",
-       );
-       clearForm();
-       Get.offNamed(AppPages.newData);
-
-     }else{
-       print("wrong");
-       Get.snackbar(
-         "False",
-         "error!",
-       );
-
-     }
-  }
 
   void clearForm(){
     nameController.clear();

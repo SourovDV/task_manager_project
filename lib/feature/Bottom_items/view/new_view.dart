@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:task_manager_project/common/utils/app_color/app_color.dart';
 import 'package:task_manager_project/common/utils/widget/appbar_widgth.dart';
-import 'package:task_manager_project/data/auth/authController/user_data.dart';
 import 'package:task_manager_project/feature/Bottom_items/controller/new_controller.dart';
 import 'package:task_manager_project/feature/Bottom_items/widgth/card.dart';
 
@@ -16,7 +15,6 @@ class NewView extends GetView<NewController> {
       appBar: AppbarWidgth(
         even: controller.goToProfilePage,
         icons: IconButton(onPressed: (){
-          AuthController.logOutData();
           controller.logOut();
         }, icon: Icon(Icons.logout),)
       ),
