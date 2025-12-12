@@ -22,7 +22,6 @@ class SignUpView extends GetView<SignUpController> {
                 SizedBox(height: 100.h,),
                 Text("Sign Up", style: theme.labelLarge),
                 SizedBox(height: 20.h),
-
                 Form(
                   key: controller.global_key,
                   child: Column(
@@ -42,7 +41,6 @@ class SignUpView extends GetView<SignUpController> {
                         validator: controller.emailValidation,
                       ),
                       SizedBox(height: 10),
-
                       TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         controller: controller.passwordController,
@@ -50,7 +48,6 @@ class SignUpView extends GetView<SignUpController> {
                         validator: controller.passwordValidation,
                       ),
                       SizedBox(height: 10),
-
                       TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         controller: controller.addressController,
@@ -58,7 +55,6 @@ class SignUpView extends GetView<SignUpController> {
                         validator: controller.addressValidation,
                       ),
                       SizedBox(height: 10),
-
                       TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         controller: controller.numberController,

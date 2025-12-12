@@ -12,11 +12,11 @@ class SignUpController extends GetxController {
     Get.toNamed(AppPages.signIn);
   }
 
-   final nameController = TextEditingController();
-   final emailController = TextEditingController();
-   final passwordController = TextEditingController();
-   final addressController = TextEditingController();
-   final numberController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final addressController = TextEditingController();
+  final numberController = TextEditingController();
 
   final global_key = GlobalKey<FormState>();
 
@@ -72,13 +72,14 @@ class SignUpController extends GetxController {
       print("Form Not Valid");
     }
   }
-  void gotoNavBarItem(){
+
+  void gotoNavBarItem() {
     Get.toNamed(AppPages.itemNavber);
   }
 
   //post request call
   Future<void> registerUser() async {
-    isLoading.value=true;
+    isLoading.value = true;
     Map<String, dynamic> userData = {
       "email": emailController.text.trim(),
       "firstName": nameController.text.trim(),
@@ -91,8 +92,8 @@ class SignUpController extends GetxController {
       url: Urls.registerUser,
       body: userData,
     );
-    isLoading.value=false;
-    if(response.isSuccess){
+    isLoading.value = false;
+    if (response.isSuccess) {
       clearForm();
       Get.snackbar(
         "Success",
@@ -102,12 +103,8 @@ class SignUpController extends GetxController {
         colorText: Colors.white,
       );
       gotoNavBarItem();
-
     }
-
   }
-
-
 
 
   void clearForm() {
