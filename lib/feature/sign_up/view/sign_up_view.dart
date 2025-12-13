@@ -23,7 +23,7 @@ class SignUpView extends GetView<SignUpController> {
                 Text("Sign Up", style: theme.labelLarge),
                 SizedBox(height: 20.h),
                 Form(
-                  key: controller.global_key,
+                  key: controller.signUpGlobalKey,
                   child: Column(
                     children: [
                       TextFormField(

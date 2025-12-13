@@ -18,7 +18,7 @@ class SignUpController extends GetxController {
   final addressController = TextEditingController();
   final numberController = TextEditingController();
 
-  final global_key = GlobalKey<FormState>();
+  final signUpGlobalKey = GlobalKey<FormState>();
 
   // Common validation
   String? nameValidation(value) {
@@ -66,7 +66,7 @@ class SignUpController extends GetxController {
   }
 
   void submitForm() {
-    if (global_key.currentState!.validate()) {
+    if (signUpGlobalKey.currentState!.validate()) {
       registerUser();
     } else {
       print("Form Not Valid");

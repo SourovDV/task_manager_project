@@ -1,15 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_manager_project/data/models/usermodel/userModel.dart';
 import 'package:task_manager_project/data/services/network_caller.dart';
 import 'package:task_manager_project/data/utils/urls.dart';
+import 'package:task_manager_project/feature/controller/auth_controller.dart';
 
 import 'package:task_manager_project/routes/app_pages.dart';
 
 class SignInController extends GetxController {
   RxBool isLoading = false.obs;
 
-  final global_key = GlobalKey<FormState>();
+  final signInGlobalKey = GlobalKey<FormState>();
   static TextEditingController emailController = TextEditingController();
   static TextEditingController passwordController = TextEditingController();
 
@@ -34,11 +35,17 @@ class SignInController extends GetxController {
   }
 
   void signInSubmitForm() {
-    if (global_key.currentState!.validate()) {
+    if (signInGlobalKey.currentState!.validate()) {
         loginUser();
 
     } else {
-      print("Form Not Valid");
+      Get.snackbar(
+        "Error",
+        "Register Successful!",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
     }
   }
 
@@ -55,17 +62,21 @@ class SignInController extends GetxController {
         "Success",
         "Register Successful!",
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green.withOpacity(0.8),
+        backgroundColor: Colors.green,
         colorText: Colors.white,
       );
       clearForm();
-      signInButtonToNavberItems();
+      String token = response.responseData!["token"];
+      UserModal userModal = UserModal.formJson(response.responseData!["data"]);
+      AuthController.saveUserData(token,userModal);
+
+      signInButtonToItems();
     }else{
       Get.snackbar(
         "Error",
         "Register Successful!",
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.8),
+        backgroundColor: Colors.red,
         colorText: Colors.white,
       );
     }
@@ -82,7 +93,7 @@ class SignInController extends GetxController {
     Get.toNamed(AppPages.forgotEmailVerification);
   }
 
-  void signInButtonToNavberItems() {
+  void signInButtonToItems() {
     Get.toNamed(AppPages.itemNavber);
   }
 

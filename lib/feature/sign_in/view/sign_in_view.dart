@@ -23,7 +23,7 @@ class SignInView extends GetView<SignInController> {
               SizedBox(height: 20.h),
 
               Form(
-                key: controller.global_key,
+                key: controller.signInGlobalKey,
                 child: Column(
                   children: [
                     TextFormField(
@@ -46,7 +46,7 @@ class SignInView extends GetView<SignInController> {
               SizedBox(height: 20.h),
              Obx((){
                return  Visibility(
-                 visible: controller.isLoading == false,
+                 visible: controller.isLoading==false,
                  replacement: CircularProgressIndicator(),
                  child: CommonButton(
                    child: () {
