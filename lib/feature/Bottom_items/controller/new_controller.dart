@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:task_manager_project/feature/controller/auth_controller.dart';
 import 'package:task_manager_project/routes/app_pages.dart';
 class NewController extends GetxController{
   void newScreentoAddTaskScreen(){
@@ -9,6 +10,7 @@ class NewController extends GetxController{
   }
 
   void logOut(){
+    AuthController.clearUserData();
     Get.toNamed(AppPages.signIn);
   }
 
