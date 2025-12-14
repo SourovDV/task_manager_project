@@ -22,7 +22,9 @@ class NetworkCaller {
     try {
       Uri uri = Uri.parse(url);
       debugPrint("$uri");
-      Response response = await get(uri);
+      Response response = await get(uri,headers: {
+        "token":AuthController.userToken ?? ""
+      });
       debugPrint("${response.statusCode}");
       debugPrint("response data=> ${response.body}");
       if (response.statusCode == 200) {

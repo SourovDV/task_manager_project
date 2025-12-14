@@ -24,14 +24,22 @@ class NewView extends GetView<NewController> {
           // Horizontal Scroll Cards
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                buildCard(number: '05',title: 'New'),
-                buildCard(number: '04',title: 'Progress'),
-                buildCard(number: '03',title: 'Complete'),
-                buildCard(number: '02',title: 'Cancel'),
-              ],
-            ),
+            child: Obx((){
+              return Visibility(
+                visible: controller.getListStatusTaskModelProgress ==false,
+                replacement: CircularProgressIndicator(),
+                child:SizedBox(
+                  height: 100,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    primary: false,
+                    shrinkWrap: true,
+                    itemCount: controller.taskCountBystatusModel?.data?.length ?? 0,
+                      itemBuilder: (context,index){
+                    return buildCard(number:controller.taskCountBystatusModel!.data![index].sId ??"", title:controller.taskCountBystatusModel!.data![index].sum.toString());
+                  }),
+                ));
+            })
           ),
 
           Expanded(child: buildListView()),
