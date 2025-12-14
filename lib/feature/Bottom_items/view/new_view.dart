@@ -42,7 +42,12 @@ class NewView extends GetView<NewController> {
             })
           ),
 
-          Expanded(child: buildListView()),
+          Expanded(child:Obx((){
+            return Visibility(
+                visible: controller.getListStatusTaskModelProgress == false,
+                replacement: Center(child: CircularProgressIndicator()),
+                child: buildListView());
+          })),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -57,7 +62,7 @@ class NewView extends GetView<NewController> {
 
   ListView buildListView() {
     return ListView.builder(
-      itemCount: 5,
+      itemCount: controller.showListOfTask?.data?.length ?? 0,
       itemBuilder: (context, index) {
         return ListTile(
           title: Card(
@@ -66,9 +71,9 @@ class NewView extends GetView<NewController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Title will be here"),
-                  Text("Description will be here"),
-                  Text("13/04/2025"),
+                  Text(controller.showListOfTask!.data![index].title ?? ""),
+                  Text(controller.showListOfTask!.data![index].description ?? ""),
+                  Text(controller.showListOfTask!.data![index].createdDate ?? ""),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

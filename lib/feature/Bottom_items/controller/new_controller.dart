@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_manager_project/data/models/usermodel/showListOfTasksModel.dart';
 import 'package:task_manager_project/data/models/usermodel/taskCoundBystatusModel.dart';
 import 'package:task_manager_project/data/services/network_caller.dart';
 import 'package:task_manager_project/data/utils/urls.dart';
@@ -20,6 +21,7 @@ class NewController extends GetxController{
 
   RxBool getListStatusTaskModelProgress = false.obs;
   TaskCountBystatusModel ?taskCountBystatusModel;
+  ShowListOfTask ?showListOfTask;
 
   Future<void> getTaskCoundByStatus()async{
     getListStatusTaskModelProgress.value = true;
@@ -39,9 +41,29 @@ class NewController extends GetxController{
 
   }
 
+  Future<void> showListView()async{
+    getListStatusTaskModelProgress.value = true;
+    final NetworkResponse response =await NetworkCaller.getRequest(url: Urls.showListView("New"));
+    getListStatusTaskModelProgress.value = false;
+    if(response.isSuccess){
+      showListOfTask = ShowListOfTask.fromJson(response.responseData!);
+    }else{
+      Get.snackbar(
+        "Success",
+        "Register Successful!",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+    }
+
+
+  }
+
   @override
   void onReady() {
     super.onReady();
     getTaskCoundByStatus();
+    showListView();
   }
 }
