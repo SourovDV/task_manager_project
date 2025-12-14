@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
+import 'package:task_manager_project/feature/controller/auth_controller.dart';
 
 class NetworkResponse {
   final int statusCode;
@@ -40,33 +41,52 @@ class NetworkCaller {
       }
     } catch (e) {
       return NetworkResponse(
-          statusCode: -1, isSuccess: false, errorSms: e.toString());
+        statusCode: -1,
+        isSuccess: false,
+        errorSms: e.toString(),
+      );
     }
   }
 
-  static Future<NetworkResponse> postRequest({required String url, Map<String, dynamic> ? body}) async {
+  static Future<NetworkResponse> postRequest({
+    required String url,
+    Map<String, dynamic>? body,
+  }) async {
     try {
       Uri uri = Uri.parse(url);
       debugPrint("uri => $uri");
       Response response = await post(
-          uri,
-          headers: {"Content-Type": "application/json"},
-          body: jsonEncode(body));
+        uri,
+        headers: {
+          "Content-Type": "application/json",
+          "token":AuthController.userToken ?? ""
+          // 'Authorization': 'Bearer <${AuthController.userToken}>'
+
+        },
+        body: jsonEncode(body),
+      );
       debugPrint("statusCode => ${response.statusCode}");
       debugPrint('response data => ${response.body}');
+
       if (response.statusCode == 200) {
         final decode = jsonDecode(response.body);
-        return NetworkResponse(statusCode: response.statusCode,
-            isSuccess: true,
-            responseData: decode);
+        return NetworkResponse(
+          statusCode: response.statusCode,
+          isSuccess: true,
+          responseData: decode,
+        );
       } else {
         return NetworkResponse(
-            statusCode: response.statusCode, isSuccess: false);
+          statusCode: response.statusCode,
+          isSuccess: false,
+        );
       }
     } catch (e) {
       return NetworkResponse(
-          statusCode: -1, isSuccess: false, errorSms: e.toString());
+        statusCode: -1,
+        isSuccess: false,
+        errorSms: e.toString(),
+      );
     }
   }
-
 }

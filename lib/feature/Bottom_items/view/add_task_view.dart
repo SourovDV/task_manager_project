@@ -12,28 +12,49 @@ class AddTaskView extends GetView<AddTaskController> {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            SizedBox(height: 50.h,),
-            Text("Add New Task",style: theme.labelLarge,),
-            SizedBox(height: 20.h,),
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: "Title"
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            children: [
+              SizedBox(height: 50.h),
+              Text("Add New Tasks", style: theme.labelLarge),
+              SizedBox(height: 20.h),
+              Form(
+                key: controller.addTaskKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: InputDecoration(hintText: "Title"),
+                      controller: controller.titleController,
+                      validator: controller.titleValidation,
+                    ),
+                    SizedBox(height: 15.h),
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: InputDecoration(hintText: "Description"),
+                      maxLines: 5,
+                      controller: controller.descriptionController,
+                      validator: controller.descriptionValidation,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 15.h,),
-            TextFormField(
-              decoration: InputDecoration(
-                  hintText: "Description",
-              ),
-             maxLines: 5,
-            ),
-            SizedBox(height: 30.h,),
-            CommonButton(child: (){})
-          ],
+              SizedBox(height: 30.h),
+              Obx(() {
+                return Visibility(
+                  visible: controller.addTaskLoading.value == false,
+                  replacement: CircularProgressIndicator(),
+                  child: CommonButton(
+                    child: () {
+                      controller.addedNewTask();
+                    },
+                  ),
+                );
+              }),
+            ],
+          ),
         ),
       ),
     );
