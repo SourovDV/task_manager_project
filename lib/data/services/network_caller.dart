@@ -49,11 +49,83 @@ class NetworkCaller {
       );
     }
   }
+  static Future<NetworkResponse> getDeleteRequest({
+    required String url,
+  }) async
+  {
+    try {
+      Uri uri = Uri.parse(url);
+      debugPrint("GET DELETE => $uri");
+
+      Response response = await get(
+        uri,
+        headers: {
+          "token": AuthController.userToken ?? "",
+        },
+      );
+
+      if (response.statusCode == 200) {
+        return NetworkResponse(
+          statusCode: response.statusCode,
+          isSuccess: true,
+          responseData: jsonDecode(response.body),
+        );
+      } else {
+        return NetworkResponse(
+          statusCode: response.statusCode,
+          isSuccess: false,
+        );
+      }
+    } catch (e) {
+      return NetworkResponse(
+        statusCode: -1,
+        isSuccess: false,
+        errorSms: e.toString(),
+      );
+    }
+  }
+
+  static Future<NetworkResponse> updateTaskStatus({
+    required String url,
+  }) async
+  {
+    try {
+      Uri uri = Uri.parse(url);
+      debugPrint("UPDATE STATUS URL => $uri");
+
+      Response response = await get(
+        uri,
+        headers: {
+          "token": AuthController.userToken ?? "",
+        },
+      );
+
+      if (response.statusCode == 200) {
+        return NetworkResponse(
+          statusCode: response.statusCode,
+          isSuccess: true,
+          responseData: jsonDecode(response.body),
+        );
+      } else {
+        return NetworkResponse(
+          statusCode: response.statusCode,
+          isSuccess: false,
+        );
+      }
+    } catch (e) {
+      return NetworkResponse(
+        statusCode: -1,
+        isSuccess: false,
+        errorSms: e.toString(),
+      );
+    }
+  }
 
   static Future<NetworkResponse> postRequest({
     required String url,
     Map<String, dynamic>? body,
-  }) async {
+  }) async
+  {
     try {
       Uri uri = Uri.parse(url);
       debugPrint("uri => $uri");
@@ -63,7 +135,6 @@ class NetworkCaller {
           "Content-Type": "application/json",
           "token":AuthController.userToken ?? ""
           // 'Authorization': 'Bearer <${AuthController.userToken}>'
-
         },
         body: jsonEncode(body),
       );

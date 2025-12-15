@@ -23,12 +23,44 @@ class NewController extends GetxController{
   TaskCountBystatusModel ?taskCountBystatusModel;
   ShowListOfTask ?showListOfTask;
 
+  Future<void> deleteTheItemFromList(String id) async {
+    final response = await NetworkCaller.getDeleteRequest(
+      url: Urls.deleteData(id),
+    );
+
+    if (response.isSuccess) {
+      Get.snackbar("Success", "Task deleted");
+
+      showListView();
+      getTaskCoundByStatus();
+    } else {
+      Get.snackbar("Error", "Delete failed");
+    }
+  }
+
+  Future<void> changeStatus(String id, String status) async {
+    final response = await NetworkCaller.updateTaskStatus(
+      url: Urls.updateTaskStatus(id, status),
+    );
+
+    if (response.isSuccess) {
+      Get.snackbar("Success", "Status Updated");
+
+      // list আবার আনো
+      showListView();
+      getTaskCoundByStatus();
+    } else {
+      Get.snackbar("Error", "Status update failed");
+    }
+  }
+
   Future<void> getTaskCoundByStatus()async{
     getListStatusTaskModelProgress.value = true;
     final NetworkResponse response =await NetworkCaller.getRequest(url: Urls.taskCountByStatusModel);
     getListStatusTaskModelProgress.value = false;
     if(response.isSuccess){
       taskCountBystatusModel = TaskCountBystatusModel.fromJson(response.responseData!);
+      showListView();
     }else{
       Get.snackbar(
         "Success",

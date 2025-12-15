@@ -96,9 +96,20 @@ class NewView extends GetView<NewController> {
                       ),
                       Row(
                         children: [
-                          Icon(Icons.edit),
+                          IconButton(
+                            onPressed: () {
+                              controller.changeStatus(
+                                controller.showListOfTask!.data![index].sId!,
+                                "New",
+                              );
+                            },
+                            icon: Icon(Icons.edit),
+                          ),
+
                           SizedBox(width: 10.w),
-                          Icon(Icons.delete),
+                          IconButton(onPressed: (){
+                            controller.deleteTheItemFromList(controller.showListOfTask!.data![index].sId??"" );
+                          }, icon: Icon(Icons.delete))
                         ],
                       ),
                     ],
