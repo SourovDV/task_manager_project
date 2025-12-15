@@ -2,15 +2,19 @@ class UserModal {
   String? email;
   String? firstname;
   String? lastname;
-  String? mobile;
-  String? photo;
 
-  UserModal.formJson(Map<String, dynamic> json) {
-    email = json["email"];
-    firstname = json["firstName"];
-    lastname = json["lastName"];
-    mobile = json["mobile"];
-    photo = json["photo"];
+  UserModal({
+    this.email,
+    this.firstname,
+    this.lastname,
+  });
+
+  factory UserModal.formJson(Map<String, dynamic> json) {
+    return UserModal(
+      email: json['email'],
+      firstname: json['firstName'],
+      lastname: json['lastName'],
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -18,8 +22,18 @@ class UserModal {
       "email": email,
       "firstName": firstname,
       "lastName": lastname,
-      "mobile": mobile,
-      "photo": photo,
     };
+  }
+
+  UserModal copyWith({
+    String? email,
+    String? firstname,
+    String? lastname,
+  }) {
+    return UserModal(
+      email: email ?? this.email,
+      firstname: firstname ?? this.firstname,
+      lastname: lastname ?? this.lastname,
+    );
   }
 }

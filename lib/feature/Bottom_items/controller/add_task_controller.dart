@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager_project/data/services/network_caller.dart';
 import 'package:task_manager_project/data/utils/urls.dart';
+import 'package:task_manager_project/feature/Bottom_items/controller/new_controller.dart';
 import 'package:task_manager_project/feature/controller/auth_controller.dart';
+import 'package:task_manager_project/routes/app_pages.dart';
 
 class AddTaskController extends GetxController {
   final addTaskKey = GlobalKey<FormState>();
@@ -48,6 +50,12 @@ class AddTaskController extends GetxController {
     addTaskLoading.value = false;
     if (response.isSuccess) {
       clearForm();
+      Get.offNamed(AppPages.itemNavber);
+      if (Get.isRegistered<NewController>()) {
+        final newController = Get.find<NewController>();
+        newController.showListView();
+        newController.getTaskCoundByStatus();
+      }
       Get.snackbar(
         "Success",
         "Register Successful!",
@@ -55,8 +63,11 @@ class AddTaskController extends GetxController {
         backgroundColor: Colors.green,
         colorText: Colors.white,
       );
+
     }
   }
+
+
 
   void clearForm() {
     titleController.clear();

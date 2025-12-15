@@ -17,76 +17,76 @@ class ProfileView extends GetView<ProfileController> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Obx((){
-            return Visibility(
-              visible: controller.profileProgress == false,
-              replacement: CircularProgressIndicator(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 80.h),
-                  Text("Update Profile", style: theme.labelLarge),
-                  SizedBox(height: 10.h),
-                  Container(
-                    height: 50,
-                    width: double.infinity,
-                    color: Colors.white,
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 50.h,
-                          width: 80.w,
-                          color: Colors.grey,
-                          child: Center(
-                            child: Text(
-                              "photo",
-                              style: TextStyle(color: Colors.white),
-                            ),
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 80.h),
+                Text("Update Profile", style: theme.labelLarge),
+                SizedBox(height: 10.h),
+                Container(
+                  height: 50,
+                  width: double.infinity,
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 50.h,
+                        width: 80.w,
+                        color: Colors.grey,
+                        child: Center(
+                          child: Text(
+                            "photo",
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
-                        SizedBox(width: 10.w),
-                        Text("No item selected"),
-                      ],
-                    ),
+                      ),
+                      SizedBox(width: 10.w),
+                      Text("No item selected"),
+                    ],
                   ),
-                  SizedBox(height: 10.h),
-                  Form(
-                    key: controller.updateKey,
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          decoration: InputDecoration(hintText: "Email"),
-                          controller: controller.emailController,
-                          validator: controller.emailValidation,
-                        ),
-                        SizedBox(height: 10.h),
-                        TextFormField(
-                          decoration: InputDecoration(hintText: "First Name"),
-                          controller: controller.firstNameController,
-                          validator: controller.firstNameValidation,
-                        ),
-                        SizedBox(height: 10.h),
-                        TextFormField(
-                          decoration: InputDecoration(hintText: "Last Name"),
-                          controller: controller.lastNameController,
-                          validator: controller.firstNameValidation,
-                        ),
-                        SizedBox(height: 10.h),
-                        TextFormField(
-                          decoration: InputDecoration(hintText: "Mobile"),
-                        ),
-                        SizedBox(height: 10.h),
-                        TextFormField(
-                          decoration: InputDecoration(hintText: "Password"),
-                        ),
-                      ],
-                    ),
+                ),
+                SizedBox(height: 10.h),
+                Form(
+                  key: controller.updateKey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        decoration: InputDecoration(hintText: "Email"),
+                        controller: controller.emailController,
+                        validator: controller.emailValidation,
+                      ),
+                      SizedBox(height: 10.h),
+                      TextFormField(
+                        decoration: InputDecoration(hintText: "First Name"),
+                        controller: controller.firstNameController,
+                        validator: controller.firstNameValidation,
+                      ),
+                      SizedBox(height: 10.h),
+                      TextFormField(
+                        decoration: InputDecoration(hintText: "Last Name"),
+                        controller: controller.lastNameController,
+                        validator: controller.firstNameValidation,
+                      ),
+                      SizedBox(height: 10.h),
+                      TextFormField(
+                        decoration: InputDecoration(hintText: "Mobile"),
+                      ),
+                      SizedBox(height: 10.h),
+                      TextFormField(
+                        decoration: InputDecoration(hintText: "Password"),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 20.h),
-                  CommonButton(child: () {
-                    controller.updateProfile();
+                ),
+                SizedBox(height: 20.h),
+                Visibility(
+                  visible: controller.profileProgress.value == false,
+                  replacement: Center(child: CircularProgressIndicator()),
+                  child: CommonButton(child: () {
+                    controller.profileDataUpdate();
                   }),
-                ],
-              ),
+                ),
+              ],
             );
           }),
         ),

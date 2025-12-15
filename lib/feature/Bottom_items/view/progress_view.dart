@@ -46,7 +46,7 @@ class ProgressView extends GetView<ProgressController> {
                                   ),
                                 ),
                                 child: Text(
-                                  "New",
+                                  "Progress",
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: Colors.white,

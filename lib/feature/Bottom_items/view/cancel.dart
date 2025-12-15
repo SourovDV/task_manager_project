@@ -19,7 +19,7 @@ class CancelView extends GetView<CancelController> {
               child: Obx((){
                 return Visibility(
                   visible: controller.getprogressLoadings == false,
-                  replacement: CircularProgressIndicator(),
+                  replacement: Center(child: CircularProgressIndicator()),
                   child: ListView.builder(
                     itemCount: controller.showListOfTask?.data?.length ?? 0,
                     itemBuilder: (context, index) {
